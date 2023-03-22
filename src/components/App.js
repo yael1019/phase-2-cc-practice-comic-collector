@@ -1,7 +1,14 @@
+import { useState } from 'react'
 import ComicsContainer from "./ComicsContainer"
 import ComicForm from "./ComicForm"
 
 function App() {
+  const [comics, setComics] = useState([]);
+  const [form, setForm] = useState({
+    image_url: '',
+    title: '',
+    issue: ''
+  })
   return (
     <div className="App">
 
@@ -10,11 +17,11 @@ function App() {
       <div className="grid with-sidebar">
 
         <div className="flex-container">
-          <ComicsContainer />
+          <ComicsContainer comics={ comics } setComics={ setComics } />
         </div>
 
         <div className="sidebar">
-          <ComicForm />
+          <ComicForm form={ form } setForm={ setForm } comics={ comics } setComics={ setComics } />
         </div>
 
       </div>

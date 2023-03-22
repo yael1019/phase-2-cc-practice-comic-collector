@@ -1,15 +1,19 @@
-function Comic() {
-
+import { useEffect, useState } from 'react'
+function Comic({ com, handleRemove }) {
+  const [showImage, setShowImage] = useState(true)
   return (
-    <div className="comic-item">
-
-      {/* The image should render if the details aren't displayed */}
-      <img src={"#"} alt={"Comic Issue Image"} />
-
-      {/* The details should render if the image isn't displayed */}
-      <h3>{"Title"}</h3>
-      <h4>{"Issue No."}</h4>
-      <button>Remove</button>
+    <div className="comic-item" onClick={() => setShowImage(!showImage)}>
+      {
+        showImage
+          ?
+          <img src={com.image_url} alt={"Comic Issue Image"} />
+          :
+          <>
+            <h3>{com.title}</h3>
+            <h4>{com.issue}</h4>
+          </>
+      }
+      <button onClick={ () => handleRemove(com.id) }>Remove</button>
 
     </div>
   )
